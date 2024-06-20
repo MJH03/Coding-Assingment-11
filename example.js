@@ -29,12 +29,34 @@ function main() {
                     return scale(d);
             })
             .attr('height', barHeight - margin)
+            .on("mouseover", mouseOver)
+            .on("mouseout", mouseOut)
 //Step 4: Text Labels
 group.append('text')
             .attr('x', function (d){
-                return (scale(d));
+                return (scale(d))
             })
             .attr('y', barHeight / 2)
             .attr('dy', '.35em')
             .text(function (d){return d;})
+
+//Step 5: Transition
+    function mouseOver(d,i){
+            d3.select(this).attr('class', 'highlight')
+            d3.select(this)
+                .transition()
+                .duration(500)
+                .attr('width', scale)
+                .attr('y', function(d){return scale(d) - 10})
+                .attr('height', function(d) {return barHeight - scale(d) + 10;})
+    }
+    function mouseOut(d,i){
+        d3.select(this).attr('class', 'svg rect')
+        d3.select(this)
+                .transition()
+                .duration(100)
+                .attr('width', scale)
+                .attr('y', function(d){return scale(d);})
+                .attr('height', function(d){return barHeight - scale(d)})
+    }
 }
