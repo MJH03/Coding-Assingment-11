@@ -6,4 +6,8 @@ function main() {
     var barHeight = 20;
     var margin = 1;
 
+//Steph 2: Scaling
+    var scale = d3.scaleLinear()
+                    .domain([d3.min(barData), d3.max(barData)])
+
 }
