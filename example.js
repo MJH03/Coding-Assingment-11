@@ -29,5 +29,12 @@ function main() {
                     return scale(d);
             })
             .attr('height', barHeight - margin)
-    
+//Step 4: Text Labels
+group.append('text')
+            .attr('x', function (d){
+                return (scale(d));
+            })
+            .attr('y', barHeight / 2)
+            .attr('dy', '.35em')
+            .text(function (d){return d;})
 }
